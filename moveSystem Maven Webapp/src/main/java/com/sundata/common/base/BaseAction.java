@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,7 +16,7 @@ import com.sundata.common.util.HtmlUtil;
 
 
 public class BaseAction {
-
+	private final static Log sysLogLogger = LogFactory.getLog("sysLog");
 	public final static String SUCCESS = "_success";
 	public final static String MSG = "_msg";
 	public final static String DATA = "data";
@@ -89,14 +91,14 @@ public class BaseAction {
 	}
 
 	//统一异常处理方法
-	@ExceptionHandler(Exception.class)  
-    public void exceptionHandler(Exception ex,HttpServletResponse response,HttpServletRequest request) {
-		//String msg = sysLogManageService.insert("", "", ex);
-
-		// 有这句的话ie中会进入error方法
-//		response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
-		sendFailureMessage(response, null);
-	}
+//	@ExceptionHandler(Exception.class)  
+//    public void exceptionHandler(Exception ex,HttpServletResponse response,HttpServletRequest request) {
+//		//String msg = sysLogManageService.insert("", "", ex);
+//
+//		// 有这句的话ie中会进入error方法
+////		response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+//		sendFailureMessage(response, null);
+//	}
 	private void sendFailureMessage(HttpServletResponse response, String message) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put(SUCCESS, false);

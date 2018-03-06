@@ -24,7 +24,7 @@ public class AlarmRecordAction extends BaseAction{
 	@RequestMapping("/init")
 public ModelAndView init(){
 	Map<String,Object> context = new HashMap<String,Object>();
-	return forword("alarmList", context);
+	return forword("alarm/alarmList", context);
 }
 	
 	

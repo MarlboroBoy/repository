@@ -44,7 +44,7 @@
     <script src="${ctx}/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
     <script src="${ctx}/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
 		
-	<<script type="text/javascript" src="${ctx}/plugins/bootstrap3-dialog-master/js/bootstrap-dialog.js">
+	<script type="text/javascript" src="${ctx}/plugins/bootstrap3-dialog-master/js/bootstrap-dialog.js">
 
 </script>	
 <!-- 去掉ie下文本框右侧叉号及密码框右侧眼睛，因为可输入的下拉框中此叉号只能清空文本框内容不能取消下拉框选择 -->
