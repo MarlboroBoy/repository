@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>快速注册</title>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1.0" />
+<meta name="format-detection" content="telephone=no, email=no" />
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/index.css" />
+<link rel="stylesheet" type="text/css" href="../lib/css/layer.css" />
+<script src="../lib/js/jquery-2.1.4.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="../js/wapframwork.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="//c.dun.163yun.com/js/c.js"></script>
+<!-- 验证码组件js -->
+</head>
+
+<body class="">
+	<div class="login_bg">
+		<img src="../img/login_bg.png">
+		<div>
+			<div class="register_title" style="display: none;">
+				<a href="javascript:location.href='index.html'"> <i class="icon"></i>
+				</a> <a class="login_btn" href="login.html?z">登录</a>
+			</div>
+			<div class="register_content">
+			<form action="" id="registerform">
+				<div class="register_part2">
+					<div class="item">
+						<input type="text" id="name" name="name" placeholder="姓名" />
+					</div>
+					<div class="item">
+						<input type="password" id="" placeholder="密码6-20位字母数字组合"
+							maxlength="20" /> <img class="icon_eye" src="../img/bkj.png" />
+					</div>
+					<div class="item">
+						<input type="password" id="password" name="password"
+							placeholder="确认密码" maxlength="20" /> <img class="icon_eye"
+							src="../img/bkj.png" />
+					</div>
+					<div class="item">
+						 <select>
+  <option value ="volvo">Volvo</option>
+  <option value ="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+						 	</div>
+					<div class="item">
+						<input type="text" id="idcardNumber" name="idcardNumber"
+							placeholder="身份证号" />
+					</div>
+					<div class="item">
+						<input type="number" id="tel" name="tel" placeholder="电话" />
+					</div>
+					</form>
+					<div class="referenceWrap">
+						<div class="referenceTitle" id="referenceTitle"></div>
+						<a href="javascript:;" class="register_btn disabled"
+							style="text-align: center" id="register_btn">注册</a>
+						<!--<input type="button" class="register_btn disabled" disabled id="register_btn" value="立即注册">-->
+
+						<div class="xieyi">
+							<!--<input type="checkbox" checked class="if_agree" id="if_agree"/><label for="if_agree">我同意</label>-->
+							<span class="xieyiname">注册账户表示您同意<a
+								href="service_protol.html">《用户协议》</a></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="modal" id="modal" style="display: none;">
+				<img src="../img/loading.svg" class="loadingImg">
+			</div>
+		</div>
+</body>
+
+<script src="../lib/js/layer.js" type="text/javascript" charset="utf-8"></script>
+<!--头部-->
+<script src="../lib/js/RainbowBridge.js" type="text/javascript"
+	charset="utf-8"></script>
+<script type="text/javascript">
+		setTitle(".register_title", {
+			'title': '快速注册'
+		});
+
+		function recommendFn(val) {
+			
+		}
+	</script>
+<script src="../js/reg.js?v=1.2.2" type="text/javascript"
+	charset="utf-8"></script>
+
+</html>

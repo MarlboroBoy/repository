@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>列表</title>
+    <link rel="stylesheet" href="../dist/css/muui.min.css">
+  
+    <link rel="stylesheet" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/index.css" />
+	<link rel="stylesheet" href="../lib/css/layer.css" type="text/css">
+	<script src="../lib/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/js/jquery.base64.js"></script>
+	<script src="../lib/js/layer.js"></script>
+	  <script src="../dist/js/zepto.min.js"></script>
+    <script src="../dist/js/muui.min.js"></script>
+	<script src="../js/wapframwork.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        body{background-color: #efefef}
+        body:after{content:"";display: block;height: 1px;}
+        .scroll-ul{
+            background: #fff;}
+        .scroll-list{padding-top:44px;margin-bottom: 44px;}
+        .muui-list-loadmore{}
+    </style>
+</head>
+<body>
+<div class="muui-searchbar">
+    <form>
+        <div class="muui-table">
+            <label class="muui-cell input">
+                <i class="muui-font search-icon">&#xe752;</i>
+                <input placeholder="搜索" type="text" name="query" class="search-input">
+            </label>
+            <div muui-ac="click-active" onclick="return" class="muui-cell align-middle cancel">
+                <div>取消</div>
+            </div>
+        </div>
+    </form>
+</div>
+
+        <ul class="footer">
+            <li class="footer-item">
+                <a href="index.html" class="">
+                    <i class="icon icon_index"></i>
+                    <p class="icon_title">首页</p>
+                </a>
+            </li>
+            <li class="footer-item">
+                <a href="invest.html" class="">
+                    <i class="icon icon_invest"></i>
+                    <p class="icon_title">正在处理</p>
+                </a>
+            </li>
+            <li class="footer-item">
+                <a href="personal.html" class="">
+                    <i class="icon icon_my"></i>
+                    <p class="icon_title">我的</p>
+                </a>
+            </li>
+        </ul>
+    
+<div class="scroll-list">
+    <ul class="muui-list scroll-ul" id="list"></ul>
+</div>
+<script type="text/html" id="jstemp-list">
+    {{each list as val key}}
+    <li muui-ac="click-active" class="muui-item muui-border">
+        <a href="../example" class="muui-table">
+            <div class="muui-cell image-cell align-middle align-center">
+                <img src="images/img_default.png">
+                <div class="small">摇太阳</div>
+            </div>
+            <div class="muui-cell">
+                <div class="main-info line-clamp-1">{{val}}</div>
+                <div class="small">{{val}} <span class="muui-color">[详细]</span></div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script>
+    $(function(){
+        var time1 = + new Date();
+        $("#list").html(template("jstemp-list",{list:[]}));
+        var time2 = + new Date();
+        console.log(time1,time2);
+    });
+    $(function(){
+        $("#list").refreshList({
+            readyRefresh:function(){
+
+            },
+            resetRefresh:function(){
+            },
+            refresh:function(){
+                var $loading = muui.loading();
+                $("#list").html("");
+                $.ajax({
+                    url:"list.json",
+                    cache:false,
+                    dataType:"json",
+                    success:function(data){
+                        var temp =  template("jstemp-list",{list:data});
+                        $("#list").html(temp);
+                    },
+                    complete:function(){
+                        $loading.destory()
+                    }
+                })
+            },
+            addData:function(){
+                var $loading = muui.loading();
+                $.ajax({
+                    url:"list.json",
+                    dataType:"json",
+                    cache:false,
+                    success:function(data){
+                        var temp =  template("jstemp-list",{list:data});
+                        $("#list").append(temp);
+                    },
+                    complete:function(){
+                        $loading.destory();
+                    }
+                })
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
