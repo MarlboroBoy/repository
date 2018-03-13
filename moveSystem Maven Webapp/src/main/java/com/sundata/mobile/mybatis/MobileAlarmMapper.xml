@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sundata.mobile.mapper.MobileAlarmMapper">
+
+
+	<insert id="alarm" useGeneratedKeys="true"  keyProperty="alarmSheetID">
+	insert into tb_alarmSheet (userid,licensePlate,alarmAdress,alarmTime,imgUrl,ProcessingState,describ)
+	values(#{userid},#{licensePlate},#{alarmAdress},#{alarmTime},#{imgUrl},#{ProcessingState},#{describ})
+	</insert>
+	
+	<select id="quertOnAlarm" resultType="com.sundata.mobile.model.MobileAlarmModel">
+	select * from tb_alarmSheet tb_alarmSheet where userid =#{userid} and ProcessingState = "1"
+	</select>
+
+</mapper>
