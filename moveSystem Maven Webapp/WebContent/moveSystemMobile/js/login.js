@@ -40,6 +40,7 @@
 						if (data.rtn == 0) {
 							localStorage.setItem("username", user.val());
 							localStorage.setItem("token", data.token);
+							localStorage.setItem("account", data.account);
 							loading.close();
 							layer
 									.open({
@@ -81,7 +82,7 @@
 								end : function() {
 									//location.reload();
 									//this.layer.close();
-									$("#modal").css("display","none");
+									$(".modal").hide();
 								}
 							})
 						}

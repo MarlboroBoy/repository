@@ -24,9 +24,12 @@ public class LoginService extends BaseService<LoginModel> {
 
 	public List<LoginModel> login(LoginModel loginModel){
 		
-		System.out.println("3");
 		return loginMapper.login(loginModel);
-		
 	}
+	public int register(LoginModel loginModel){
+		
+	return	loginMapper.register(loginModel);
+	}
+	
 	
 }

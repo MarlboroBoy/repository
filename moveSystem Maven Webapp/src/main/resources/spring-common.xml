@@ -93,4 +93,11 @@
         </property>  
           <property name="resolveLazily" value="true"/> 
     </bean> -->
+ <bean id="alarmDealService" class="com.sundata.common.util.alarmdeal.service.AlarmDealService">
+ 
+ 
+ </bean>
+ <bean id ="applicationContextUtil" class="com.sundata.common.util.ApplicationContextUtil"></bean>
+    
+    
 </beans>

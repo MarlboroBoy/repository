@@ -7,8 +7,7 @@
 		var cutdownFlag = true;
 
 		$("#register_btn").click(function() {
-					$("#modal").show();
-					alert("123");
+			$("#modal").show();	
 			$.ajax({
 				type:"post",
 				url: getAPIURL() + "/mobileLogin/register.do",
@@ -19,8 +18,16 @@
 						'Content-Type' : 'application/x-www-form-urlencoded'
 					},
 					success:function(data){
-						
-						
+						if(data.rtn==0)
+						layer.open({
+							content:"注册成功,账号为:"+data.account,
+							btn:['去登陆', '取消'],
+							yes: function(index){
+								window.location.href = "../page/login.html";
+							      layer.close(index);
+							    }
+						})
+						$("#modal").hide();	
 					}
 			})
 			

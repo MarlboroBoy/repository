@@ -9,4 +9,7 @@ import com.sundata.login.mobile.model.LoginModel;
 public interface LoginMapper<T> extends BaseMapper<T> {
 
 	public List<LoginModel> login(LoginModel loginModel);
+	//注册
+	
+	public int register(LoginModel loginModel);
 }

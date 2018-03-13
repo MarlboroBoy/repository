@@ -6,11 +6,14 @@
 
 	<select id="login" resultType="com.sundata.login.mobile.model.LoginModel">
 		select * from 	tb_alarmUsers  where account =#{account} and password = #{password}
-	<!-- tb_alarmUsers -->
-	 
-	
+
 	</select>
 
+	<insert id="register" useGeneratedKeys="true"  keyProperty="account">
+	insert into tb_alarmUsers(password,name,sex,idcardNumber,tel,uptime) 
+	values(#{password},#{name},#{sex},#{idcardNumber},#{tel},#{uptime})
+	
+	</insert>
 
 
 </mapper>
