@@ -10,8 +10,20 @@
 	values(#{userid},#{licensePlate},#{alarmAdress},#{alarmTime},#{imgUrl},#{ProcessingState},#{describ})
 	</insert>
 	
-	<select id="quertOnAlarm" resultType="com.sundata.mobile.model.MobileAlarmModel">
-	select * from tb_alarmSheet tb_alarmSheet where userid =#{userid} and ProcessingState = "1"
+	<select id="queryOnAlarm" resultType="com.sundata.mobile.model.MobileAlarmModel">
+	select * from  tb_alarmSheet where userid =#{userid} and ProcessingState = "1"
 	</select>
+
+	<select id="queryOneAlarm" resultType="com.sundata.mobile.model.MobileAlarmModel">
+		select alarmSheetID,ProcessingState,licensePlate,alarmAdress,name from tb_alarmSheet left join
+		tb_alarmusers on tb_alarmSheet.userid = tb_alarmusers.account where tb_alarmSheet.alarmSheetId = #{alarmSheetID}
+	</select>
+	
+	<select id="alarmHistory" resultType="com.sundata.mobile.model.MobileAlarmModel">
+	select * tb_alarmSheet  alarmFinish where userid =#{userid}
+	</select>
+	<update id="alarmFinish">
+	update tb_alarmSheet set ProcessingState = '2' where alarmSheetId = #{alarmSheetID}
+	</update>
 
 </mapper>

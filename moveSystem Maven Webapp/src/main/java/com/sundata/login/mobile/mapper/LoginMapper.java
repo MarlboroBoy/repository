@@ -12,4 +12,10 @@ public interface LoginMapper<T> extends BaseMapper<T> {
 	//注册
 	
 	public int register(LoginModel loginModel);
+	
+	//查看用户信息
+	
+	public LoginModel userInfo(LoginModel loginModel);
+	
+	public void modifyPassword(LoginModel loginModel);
 }

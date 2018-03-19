@@ -30,7 +30,9 @@ public void AlarmRecordModel(AlarmRecordModel alarmRecordModel,HttpServletRespon
 @RequestMapping("test1")
 public ModelAndView test1(){
 	Map<String,Object> con = new HashMap<>();
-return forword("alarmListService", con);	
+	  ModelAndView mv = new ModelAndView();  
+      mv.setViewName("html500"); 
+return mv;
 }
 
 

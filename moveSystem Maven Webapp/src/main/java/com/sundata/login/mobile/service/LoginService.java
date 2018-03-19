@@ -30,6 +30,13 @@ public class LoginService extends BaseService<LoginModel> {
 		
 	return	loginMapper.register(loginModel);
 	}
-	
+	public LoginModel userInfo(LoginModel loginModel){
+		
+		return loginMapper.userInfo(loginModel);
+	}
+	public void modifyPassword(LoginModel loginModel){
+		
+		loginMapper.modifyPassword(loginModel);
+	}
 	
 }

@@ -5,30 +5,37 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0" />
 		<meta name="format-detection" content="telephone=no, email=no" />
-		<meta name="Keywords" content="投呗,光彩玖玖,互联网金融平台,武汉p2p公司,武汉投资理财,个人投资理财,小额投资理财,武汉网贷公司">
-		<meta name="description" content="“投呗”手机官网，本平台拥有5亿注册资本，账户险、银行存管共同保障用户资金。理财热线：400-001-7899" />
+		<meta name="Keywords" content="">
+		<meta name="description" content="" />
 		<title>智能移车管理系统</title>
 		<!---->
 
 		<link rel="stylesheet" href="../dist/css/muui.min.css" />
 
 		<link rel="stylesheet" href="../css/common.css" />
-		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/detial.css" />
 		<link rel="stylesheet" href="../lib/css/layer.css" type="text/css">
+		<style type="text/css">
+			 .header{
+            background:#f46054;
+        }
+			
+		</style>
 		<script src="../lib/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/js/jquery.base64.js"></script>
 		<script src="../lib/js/layer.js"></script>
 		<script src="../js/wapframwork.js" type="text/javascript" charset="utf-8"></script>
 	</head>
+	
+	
 
 	<body style="position: relative;overflow: hidden;background: #f2f2f0;">
 		<div class="wrap">
 			<section class="container index">
 				<!--0807 v1.2 star-->
-				<header class="header">
-					<a href="notification.html"><i class="icon" id="homeNews"></i></a>
+				<header class="header" style="background: #f46054;">
+					<a href="javascript:history.go(-1)" id="f_btn"><i class="icon"></i></a>
 					<span>智能移车</span>
-					<a href="javascript:;" onclick="clickMe()"><i class="icon"></i></a>
 				</header>
 				<!--0807 v1.2 end-->
 				<section style="height: 100%;overflow: auto;">
@@ -46,22 +53,22 @@
 						<form class="form_modify">
 							<div class="input_group">
 								<span class="input_des">车牌号</span>
-								<input type="text" name="txtOldPwd" id="txtOldPwd" placeholder="违停车辆车牌号码" />
+								<input type="text" name="licensePlate" id="licensePlate" placeholder="违停车辆车牌号码" />
 							</div>
 							<div class="input_group">
 								<span class="input_des">违停地址</span>
-								<input type="text" name="txtOldPwd" id="txtOldPwd" placeholder="" />
+								<input type="text" name="alarmAdress" id="alarmAdress" placeholder="" />
 							</div>
 							<div class="input_group">
 								<span class="input_des">报警人</span>
-								<input type="text" name="txtOldPwd" id="txtOldPwd" placeholder="" />
+								<input type="text" name="name" id="name" placeholder="" />
 							</div>
 							<div class="input_group">
 								<span class="input_des">处理状态</span>
-								<input type="text" name="txtReNewPwd" id="txtReNewPwd" placeholder="" />
+								<input type="text" name="ProcessingState" id="ProcessingState" placeholder="" />
 							</div>
 						</form>
-						<button class="modifypassword_btn" id="modifypassword_btn" onclick=" safechange.next();">处理成功</button>
+						<button class="modifypassword_btn" id="modifypassword_btn" onclick="alarmFinish();">处理成功</button>
 					</section>
 					<!--	页面底部部分-->
 					<ul class="footer">
@@ -103,5 +110,62 @@
 	<script src="../js/jquery.featureCarousel.js" type="text/javascript" charset="utf-8"></script>
 	<!--index-->
 	<script src="../js/index.js?v=1.2.2"></script>
+	<script type="text/javascript">
+	var str=window.location.search;
+	var alarmSheetID = str.split("?")[1];
+	$(function(){
+		
+		$.ajax({
+			type:"get",
+			url:getAPIURL()+"/alarm/queryOneAlarm.do",
+			async:true,
+			data:"alarmSheetId=" +alarmSheetID,
+			cache:false,
+			dataType:"text",
+			success:function(data){
+				if(data){
+					jsondata=$.parseJSON(data);
+					$("#licensePlate").val(jsondata.licensePlate); 
+					$("#alarmAdress").val(jsondata.alarmAdress); 
+					$("#ProcessingState").val(jsondata.processingState); 
+					$("#name").val(jsondata.name); 
+					$("input").attr("disabled",true);
+				}
+				
+			},
+			complete:function(){
+				
+				
+			}
+		});
+		
+	})
+	
+	function alarmFinish(){
+		$.ajax({
+			type:"post",
+			url:getAPIURL()+"/alarm/alarmFinish.do",
+			async:true,
+			data:"alarmSheetId=" +alarmSheetID,
+			cache:false,
+			dataType:"json",
+			success:function(data){
+				 layer.open({
+				        content: "处理成功",
+				        skin: 'msg',
+				        time: 2,
+				        end: function () {
+				          window.location.href = 'onAlarm.html';
+				        }})
+				
+			},
+			complete:function(){
+				
+				
+			}
+		});
+		
+	}
+	</script>
 
 </html>

@@ -9,7 +9,14 @@ public class MobileAlarmModel {
 	private String imgUrl;
 	private String ProcessingState;
 	private String describ;
+	private String name;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getAlarmSheetID() {
 		return alarmSheetID;
 	}

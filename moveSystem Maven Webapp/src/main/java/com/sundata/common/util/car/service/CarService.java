@@ -1,5 +1,7 @@
 package com.sundata.common.util.car.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,22 @@ public class CarService extends BaseService<CarModel> {
 	@Autowired
 	private CarMapper<CarModel> carMapper;
 	
+	public CarModel findCar(CarModel carModel){
+			return  carMapper.findCar(carModel);
+	}
+	
+	public boolean carIsHave(String licensePlate){
+		if(carMapper.carIsHave(licensePlate)>0)
+		
+			return true;
+		return false;
+		
+		
+	}
+	
 
 	@Override
 	public BaseMapper<CarModel> getMapper() {
-		// TODO Auto-generated method stub
 		return carMapper;
 	}
 

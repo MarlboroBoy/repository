@@ -12,8 +12,13 @@
 	<insert id="register" useGeneratedKeys="true"  keyProperty="account">
 	insert into tb_alarmUsers(password,name,sex,idcardNumber,tel,uptime) 
 	values(#{password},#{name},#{sex},#{idcardNumber},#{tel},#{uptime})
-	
 	</insert>
+	
+	<select id="userInfo" resultType="com.sundata.login.mobile.model.LoginModel">
+	select account,name,idcardNumber,sex,uptime,tel from  tb_alarmUsers where account=#{account}
+	</select>
 
-
+	<update id="modifyPassword">
+		update tb_alarmUser set password = #{password} where account = #{account}
+	</update>
 </mapper>

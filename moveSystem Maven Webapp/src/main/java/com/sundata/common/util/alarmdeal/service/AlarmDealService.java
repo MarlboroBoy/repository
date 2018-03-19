@@ -13,7 +13,7 @@ public class AlarmDealService implements AlarmDealServiceImpl{
 	
 	
 	public String queryAlarmState(int alarmSheetID){
-	return alarmDealMapper.queryAlarmState(alarmSheetID);
+		return alarmDealMapper.queryAlarmState(alarmSheetID);
 }
 	
 }

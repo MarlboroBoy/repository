@@ -30,12 +30,25 @@ public class MobileAlarmService extends BaseService<MobileAlarmModel> {
 	 * */
 	public List<MobileAlarmModel> queryOnAlarm(MobileAlarmModel mobileAlarmModel){
 		
-		return mobileAlarmMapper.quertOnAlarm(mobileAlarmModel);
+		return mobileAlarmMapper.queryOnAlarm(mobileAlarmModel);
+	}
+	public List<MobileAlarmModel> alarmHistory(MobileAlarmModel mobileAlarmModel){
+		
+		return mobileAlarmMapper.queryOnAlarm(mobileAlarmModel);
+	}
+	
+	public MobileAlarmModel queryOneAlarm(MobileAlarmModel mobileAlarmModel){
+		return mobileAlarmMapper.queryOneAlarm(mobileAlarmModel);
 	}
 	
 	
 	public BaseMapper<MobileAlarmModel> getMapper() {
 		return mobileAlarmMapper;
 	}
+	public void alarmFinish(MobileAlarmModel mobileAlarmModel){
+		mobileAlarmMapper.alarmFinish(mobileAlarmModel);
+	}
+	
+	
 
 }

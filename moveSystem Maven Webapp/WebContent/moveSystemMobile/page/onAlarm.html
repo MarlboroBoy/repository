@@ -47,13 +47,13 @@
                 </a>
             </li>
             <li class="footer-item">
-                <a href="invest.html" class="">
-                    <i class="icon icon_invest active"></i>
+                <a href="onAlarm.html" class="active">
+                    <i class="icon icon_invest"></i>
                     <p class="icon_title">正在处理</p>
                 </a>
             </li>
             <li class="footer-item">
-                <a href="setting.html" class="">
+                <a href="personal.html" class="">
                     <i class="icon icon_my"></i>
                     <p class="icon_title">我的</p>
                 </a>
@@ -61,71 +61,64 @@
         </ul>
     
 <div class="scroll-list">
-    <ul class="muui-list scroll-ul" id="list"></ul>
-</div>
-<script type="text/html" id="jstemp-list">
-    {{each list as val key}}
-    <li muui-ac="click-active" class="muui-item muui-border">
-        <a href="../example" class="muui-table">
-            <div class="muui-cell image-cell align-middle align-center">
-                <img src="images/img_default.png">
-                <div class="small">摇太阳</div>
-            </div>
-            <div class="muui-cell">
-                <div class="main-info line-clamp-1">{{val}}</div>
-                <div class="small">{{val}} <span class="muui-color">[详细]</span></div>
-            </div>
-        </a>
-    </li>
-    {{/each}}
-</script>
-<script>
-    $(function(){
-        var time1 = + new Date();
-        $("#list").html(template("jstemp-list",{list:[]}));
-        var time2 = + new Date();
-        console.log(time1,time2);
-    });
-    $(function(){
-        $("#list").refreshList({
-            readyRefresh:function(){
+    <ul class="muui-list scroll-ul" id="list">
 
-            },
-            resetRefresh:function(){
-            },
-            refresh:function(){
-                var $loading = muui.loading();
-                $("#list").html("");
-                $.ajax({
-                    url:"list.json",
-                    cache:false,
-                    dataType:"json",
-                    success:function(data){
-                        var temp =  template("jstemp-list",{list:data});
-                        $("#list").html(temp);
-                    },
-                    complete:function(){
-                        $loading.destory()
-                    }
-                })
-            },
-            addData:function(){
-                var $loading = muui.loading();
-                $.ajax({
-                    url:"list.json",
-                    dataType:"json",
-                    cache:false,
-                    success:function(data){
-                        var temp =  template("jstemp-list",{list:data});
-                        $("#list").append(temp);
-                    },
-                    complete:function(){
-                        $loading.destory();
-                    }
-                })
-            }
-        });
-    });
+    
+    </ul>
+</div>
+<script type="text/javascript">
+function show(url){
+	
+	location.href="detial.html?"+url; 
+	
+}
+</script>
+
+
+<script>
+	var tmpHtml='<li muui-ac="click-active" class="muui-item muui-border">';
+	var b= '<div class="muui-cell image-cell align-middle align-center">'
+var c='<img src="images/img_default.png">'
++'<div class="small">摇太阳</div>'
++'</div>';
+
+   var fina= '</div>'
++'    </a>'
++'</li>';
+$(function(){
+	var AuserId  = localStorage.getItem("username");
+	var tmp = muui.loading();
+	var data={"userid":AuserId}
+	$.ajax({
+		type:"get",
+		url:getAPIURL()+"/alarm/queryOnAlarm.do",
+		async:true,
+		cache:false,
+		data:data,
+		dataType:"json",
+		success:function(data){
+			
+			if(data){
+				for(var i =0;i<data.length;i++){
+					var  a = '<a href="javaScript:void(0)" class="muui-table" onclick=show('+data[i].alarmSheetID+')>';
+					var addData='<div class="muui-cell addData" id="addData'+i+'">'  ;
+					$("#list").append(tmpHtml+a+b+c+addData);
+					var div1='<div class="main-info line-clamp-1">'+data[i].alarmTime+'</div>'
+					+'<div class=" small">'+data[i].alarmSheetID+'</div>'
+					+' <div class="small">'+data[i].alarmAdress+'<span class="muui-color">[详细]</span></div>'					
+					$("#addData"+[i]+"").append(div1+fina);
+				}
+			}
+			
+		},
+		complete:function(){
+			
+			tmp.destory();
+		}
+	});
+})
+
+
 
 </script>
 </body>
