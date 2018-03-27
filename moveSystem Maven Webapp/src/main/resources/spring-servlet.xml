@@ -52,18 +52,22 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<property name="prefix" value="/views/"/>
 		<property name="suffix" value=".jsp"/>
-		    <property name="order" value="0"></property>
+		<property name="order" value="0"></property>
 	</bean>
+	<!-- 
 <bean  
     class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
       
     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>  
-    <property name="prefix" value="/WEB-INF/html/"></property>  
-    <!-- 如果想返回html页面怎么办 -->  
+    <property name="prefix" value="/views/"></property>  
+  
     <property name="suffix" value=".html"></property>  
-    <property name="viewNames" value="html*"></property>  
-    <!-- 定义模板顺序 -->  
+    <property name="viewNames" value="*"></property>  
+     
     <property name="order" value="1"></property>  
 </bean>
-	
+	 -->
+
+	 
+	 
 </beans>

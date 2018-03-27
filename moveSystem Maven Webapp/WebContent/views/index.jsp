@@ -41,18 +41,18 @@
 						<div class="logo-element">H+</div>
 					</li>
 
-					<li><a class="J_menuItem" href="${ctx}/views/onHandlerAlarmList.jsp"><i
+					<li><a class="J_menuItem" href="${ctx}/alarmRecord/onAlarmListInit.do"><i
 							class="fa fa-columns"></i> <span class="nav-label">当前正在处理报警信息</span></a>
 					</li>
 					<li><a class="J_menuItem" href="${ctx}/alarmRecord/init.do"><i
 							class="fa fa-columns"></i> <span class="nav-label">所有报警记录</span></a>
 					</li>
-					<li><a class="J_menuItem" href="../layouts.html"><i
+					<li><a class="J_menuItem" href="${ctx}/alarmRecord/manualAlarmInit.do"><i
 							class="fa fa-columns"></i> <span class="nav-label">人工处理记录</span></a>
 					</li>
-					<li><a class="J_menuItem" href="../layouts.html"><i
+					<li><a class="J_menuItem" href="${ctx}/car/init.do"><i
 							class="fa fa-columns"></i> <span class="nav-label">车辆库管理</span></a></li>
-					<li><a class="J_menuItem" href="layouts.html"><i
+					<li><a class="J_menuItem" href="${ctx}/paramSetting/paramSettingInit.do"><i
 							class="fa fa-columns"></i> <span class="nav-label">系统参数设置</span></a>
 					</li>
 					<li><a class="J_menuItem" href="layouts.html"><i
@@ -105,7 +105,7 @@
 										</a>
 										<div class="media-body">
 											<small class="pull-right">46小时前</small> <strong>小四</strong>
-											这个在日本投降书上签字的军官，建国后一定是个不小的干部吧？ <br> <small
+											这个在 <br> <small
 												class="text-muted">3天前 2014.11.8</small>
 										</div>
 									</div>
@@ -173,7 +173,7 @@
 				<nav class="page-tabs J_menuTabs">
 					<div class="page-tabs-content">
 						<a href="javascript:;" class="active J_menuTab"
-							data-id="index_v1.html">首页</a>
+							data-id="index.html">首页</a>
 					</div>
 				</nav>
 				<button class="roll-nav roll-right J_tabRight">
@@ -196,8 +196,8 @@
 			</div>
 			<div class="row J_mainContent" id="content-main">
 				<iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-					src="index_v1.html?v=4.0" frameborder="0" data-id="index_v1.html"
-					seamless></iframe>
+					src="${ctx}/alarmRecord/onAlarmListInit.do" frameborder="0" data-id="index_v1.html">
+					</iframe>
 			</div>
 			<div class="footer">
 				<div class="pull-right">

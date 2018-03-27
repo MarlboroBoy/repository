@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@include file="/common/views/common.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -27,18 +26,20 @@
 	</script>
 
 <body class="gray-bg">
-
 	<ul class="nav nav-tabs" role="tablist">
-
 		<li role="presentation" class="active"><a href="#home" role="tab"
 			data-toggle="tab">基本信息</a></li>
 		<li role="presentation"><a href="#profile" role="tab"
 			data-toggle="tab">车主信息</a></li>
-		<li role="presentation"><a href="#messages" role="tab"
+			<li role="presentation"><a href="#messages" role="tab"
+			data-toggle="tab">报警单信息</a></li>
+		<li role="presentation"><a href="#userMessage" role="tab"
 			data-toggle="tab">报警人信息</a></li>
 		<li role="presentation"><a href="#settings" role="tab"
 			data-toggle="tab">违停车辆信息</a></li>
+			
 	</ul>
+
 	<!-- 面板区 -->
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="home">
@@ -47,48 +48,37 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">报警单编号:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.alarmSheetId}">
 						</div>
 						<label class="col-sm-2 control-label col-sm-pull-1">车牌号:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.licensePlate}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">车主姓名:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.carOwnName}">
 						</div>
 						<label class="col-sm-2 control-label col-sm-pull-1">车主电话:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.telphone}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">报警人姓名:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.userName}">
 						</div>
 						<label class="col-sm-2 control-label col-sm-pull-1">报警人电话:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.tel}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">状态:</label>
 						<div class="col-sm-4">
-							<select class="form-control m-b" name="account">
-								<option>选项 1</option>
-								<option>选项 2</option>
-								<option>选项 3</option>
-								<option>选项 4</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-4 col-sm-offset-6">
-							<button class="btn btn-primary" type="submit">保存内容</button>
-							<button class="btn btn-white" type="reset">重置</button>
+							<input type="text" class="form-control" value="${alarmRecordModel.processingState}">
 						</div>
 					</div>
 				</form>
@@ -101,158 +91,184 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label ">车主编号:</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.id}">
 							</div>
 							<label class="col-sm-2 control-label col-sm-pull-1">车主身份证号:</label>
 							<div class="col-sm-4 col-sm-pull-1">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.idNumber}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label ">车主姓名:</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.carOwnName}">
 							</div>
 							<label class="col-sm-2 control-label col-sm-pull-1">车主电话:</label>
 							<div class="col-sm-4 col-sm-pull-1">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.telphone}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label ">车主性别:</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.sex}">
 							</div>
 							<label class="col-sm-2 control-label col-sm-pull-1">家庭住址:</label>
 							<div class="col-sm-4 col-sm-pull-1">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.address}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label ">出生年月:</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.birthday}">
 							</div>
 							<label class="col-sm-2 control-label col-sm-pull-1">电话号码:</label>
 							<div class="col-sm-4 col-sm-pull-1">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.telphone}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label ">违停次数:</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${alarmRecordModel.illegalNumber}">
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-
 		<div role="tabpanel" class="tab-pane" id="messages">
 			<div class="ibox-content">
 				<form method="get" class="form-horizontal">
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">报警单编号:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.alarmSheetId}">
 						</div>
 						<label class="col-sm-2 control-label col-sm-pull-1">车牌号:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.licensePlate}">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label ">车主姓名:</label>
+						<label class="col-sm-2 control-label ">违停地址:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.alarmAdress}">
 						</div>
-						<label class="col-sm-2 control-label col-sm-pull-1">车主电话:</label>
+						<label class="col-sm-2 control-label col-sm-pull-1">报警时间:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.alarmTime}">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label ">报警人姓名:</label>
+						<label class="col-sm-2 control-label ">现场图片:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.imgUrl}">
 						</div>
-						<label class="col-sm-2 control-label col-sm-pull-1">报警人电话:</label>
+						<label class="col-sm-2 control-label col-sm-pull-1">现场描述:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.describ}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">状态:</label>
 						<div class="col-sm-4">
-							<select class="form-control m-b" name="account">
-								<option>选项 1</option>
-								<option>选项 2</option>
-								<option>选项 3</option>
-								<option>选项 4</option>
-							</select>
+							<input type="text" class="form-control" value="${alarmRecordModel.processingState}">
+				
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
-		<!--
-	作者：offline
-	时间：2018-02-07
-	描述：违停车辆信息
--->
+		<div role="tabpanel" class="tab-pane" id="userMessage">
+			<div class="ibox-content">
+				<form method="get" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label ">报警人id:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" value="${alarmRecordModel.account}">
+						</div>
+						<label class="col-sm-2 control-label col-sm-pull-1">姓名:</label>
+						<div class="col-sm-4 col-sm-pull-1">
+							<input type="text" class="form-control" value="${alarmRecordModel.userName}">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label ">身份证号:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" value="${alarmRecordModel.idcardNumber}">
+						</div>
+						<label class="col-sm-2 control-label col-sm-pull-1">性别:</label>
+						<div class="col-sm-4 col-sm-pull-1" >
+							<input type="text" class="form-control" value="${alarmRecordModel.userSex}">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label ">创建时间:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" value="${alarmRecordModel.userUptime}">
+						</div>
+						<label class="col-sm-2 control-label col-sm-pull-1">报警人电话:</label>
+						<div class="col-sm-4 col-sm-pull-1">
+							<input type="text" class="form-control" value="${alarmRecordModel.tel}">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	
 		<div role="tabpanel" class="tab-pane" id="settings">
 			<div class="ibox-content">
 				<form method="get" class="form-horizontal">
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">车牌号:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.processingState}">
 						</div>
 						<label class="col-sm-2 control-label col-sm-pull-1">车辆类型:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.carType}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">车主姓名:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.carOwnName}">
 						</div>
 						<label class="col-sm-2 control-label col-sm-pull-1">车主电话:</label>
-						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+						<div class="col-sm-4 col-sm-pull-1" >
+							<input type="text" class="form-control" value="${alarmRecordModel.telphone}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">车辆所在地:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.carAddress}">
 						</div>
-						<label class="col-sm-2 control-label col-sm-pull-1">车辆使用类型:</label>
+						<label class="col-sm-2 control-label col-sm-pull-1">使用类型:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.userType}">
 						</div>
 					</div>
-
 					<div class="form-group">
-						<label class="col-sm-2 control-label ">汽车品牌编号:</label>
+						<label class="col-sm-2 control-label ">品牌编号:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.brandNumber}">
 						</div>
-						<label class="col-sm-2 control-label col-sm-pull-1">车辆识别代码:</label>
+						<label class="col-sm-2 control-label col-sm-pull-1">识别代码:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.carcode}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label ">发动机编号:</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.enginecode}">
 						</div>
 						<label class="col-sm-2 control-label col-sm-pull-1">汽车颜色:</label>
 						<div class="col-sm-4 col-sm-pull-1">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${alarmRecordModel.carColor}">
 						</div>
 					</div>
 				</form>

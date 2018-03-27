@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sundata.alarmdeal.AlarmDeal;
+import com.sundata.alarmdeal.Deal;
+import com.sundata.alarmdeal.service.CarService;
 import com.sundata.common.base.BaseAction;
 import com.sundata.common.util.DateUtil;
-import com.sundata.common.util.alarmdeal.AlarmDeal;
-import com.sundata.common.util.car.service.CarService;
 import com.sundata.mobile.model.MobileAlarmModel;
 import com.sundata.mobile.service.MobileAlarmService;
 @Controller
@@ -20,7 +22,7 @@ public class MobileAlarmAction  extends BaseAction{
 	@Autowired
 	private MobileAlarmService mobileAlarmService;
 	@Autowired 
-	private AlarmDeal alarmDeal;
+	private Deal deal;
 	
 	@Autowired
 	private CarService carService;//查询车辆信息
@@ -31,7 +33,7 @@ public class MobileAlarmAction  extends BaseAction{
 		if(carService.carIsHave(mobileAlarmModel.getLicensePlate())){
 		mobileAlarmModel.setProcessingState("1");
 		mobileAlarmService.alarm(mobileAlarmModel);
-		alarmDeal.alarmDeal(mobileAlarmModel);
+		//alarmDeal.alarmDeal(mobileAlarmModel);
 		}
 		else
 		{
@@ -69,6 +71,11 @@ public class MobileAlarmAction  extends BaseAction{
 		mobileAlarmService.alarmFinish(mobileAlarmModel);
 		sendSuccessMessage(response);
 		
+	}
+	@RequestMapping("/alarmTest")
+	public void alarmTest(HttpServletResponse response){
+
+		deal.startSchedule();
 	}
 	
 }

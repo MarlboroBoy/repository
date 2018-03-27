@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sundata.alarmdeal.mapper.AlarmDealMapper;
 import com.sundata.common.base.BaseMapper;
 import com.sundata.common.base.BaseService;
-import com.sundata.common.util.alarmdeal.mapper.AlarmDealMapper;
+
 import com.sundata.mobile.mapper.MobileAlarmMapper;
 import com.sundata.mobile.model.MobileAlarmModel;
 @Service

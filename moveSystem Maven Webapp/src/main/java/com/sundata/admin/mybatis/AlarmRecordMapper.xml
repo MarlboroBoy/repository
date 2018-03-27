@@ -4,14 +4,58 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sundata.admin.mapper.AlarmRecordMapper">
 
-	<select id="queryAlarmRecordList" resultType="com.sundata.admin.model.AlarmRecordModel">
-		SELECT
-		a.licenseplate,b.name userName,a.alarmTime,a.imgUrl,a.alarmAdress,d.name carOwnName,d.telphone,b.id,b.tel,a.processingstate
-		FROM tb_alarmSheet a left JOIN tb_alarmusers b on a.userid = b.id left
-		JOIN TB_Cars c on a.licensePlate = c.licenseplate LEFT JOIN
-		tb_carowner d on c.carOwnerid = d.id where processingstate=1
+	<select id="onAlarmList" resultType="com.sundata.admin.model.AlarmRecordModel">
+		select
+		a.alarmSheetId,a.userid,a.licenseplate,a.alarmAdress,a.alarmTime,a.imgurl,a.processingState,a.describ
+		,c.name as carOwnName,d.name as userName,d.tel,c.telphone
+		from tb_alarmsheet a inner JOIN
+		tb_cars b on a.licenseplate = b.licensePlate
+		left JOIN tb_carowner c on b.carOwnerid = c.ID
+		left join tb_alarmusers d on a.userid=d.account
+		 where a.processingstate='1' 
+	 	ORDER BY alarmTime DESC
 	</select>
-
-
+	<select id="alarmList" resultType="com.sundata.admin.model.AlarmRecordModel">
+		select
+		a.alarmSheetId,a.userid,a.licenseplate,a.alarmAdress,a.alarmTime,a.imgurl,a.processingState,a.describ
+		,c.name as carOwnName,d.name as userName,d.tel,c.telphone
+		from tb_alarmsheet a inner JOIN
+		tb_cars b on a.licenseplate = b.licensePlate
+		left JOIN tb_carowner c on b.carOwnerid = c.ID
+		left join tb_alarmusers d on a.userid=d.account
+		ORDER BY alarmTime DESC
+	</select>
+	<!-- 修改处理状态 -->
+	<update id="changeState">
+	update tb_alarmsheet set processingState =#{processingState} where alarmSheetId =#{alarmSheetId}
+	</update>
+	<select id="alarmDisplay" resultType="com.sundata.admin.model.AlarmRecordModel">
+	select
+		a.alarmSheetId,a.userid,a.licensePlate,a.alarmAdress,a.alarmTime,a.imgUrl,a.processingState,a.describ,
+		b.carType,b.carOwnerid,b.carAddress,b.userType,b.brandNumber,b.carcode,b.enginecode,b.carColor,
+		c.id,c.idNumber,c.name as carOwnName,c.address,c.birthday,c.telphone,c.illegalNumber,
+		d.account,d.name as userName,d.idcardNumber,d.sex as userSex,d.uptime as userUptime,d.tel
+		from tb_alarmsheet a inner JOIN
+		tb_cars b on a.licenseplate = b.licensePlate
+		left JOIN tb_carowner c on b.carOwnerid = c.ID
+		left join tb_alarmusers d on a.userid=d.account
+		where a.alarmSheetId = #{alarmSheetId}
+	</select>
+	
+	<delete id="deleteAlarm">
+	delete from tb_alarmsheet where alarmSheetId = #{alarmSheetId}
+	</delete>
+	<!-- 查询人工处理的列表 -->
+<select id="manualAlarmList" resultType="com.sundata.admin.model.AlarmRecordModel">
+		select
+		a.alarmSheetId,a.userid,a.licenseplate,a.alarmAdress,a.alarmTime,a.imgurl,a.processingState,a.describ
+		,c.name as carOwnName,d.name as userName,d.tel,c.telphone
+		from tb_alarmsheet a inner JOIN
+		tb_cars b on a.licenseplate = b.licensePlate
+		left JOIN tb_carowner c on b.carOwnerid = c.ID
+		left join tb_alarmusers d on a.userid=d.account
+		 where a.processingstate='3' 
+	 	ORDER BY alarmTime DESC
+	</select>
 
 </mapper>

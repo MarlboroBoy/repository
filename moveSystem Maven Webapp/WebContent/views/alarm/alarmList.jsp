@@ -15,20 +15,27 @@
 	content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 </head>
 <link  href="${ctx}/plugins/bootstrap3-editable/css/bootstrap-editable.css"/>
- 
+ <style>
+ select.input-sm {
+    height: 40px;
+    line-height: 30px;
+}
+ </style>
 <script type="text/javascript" src="${ctx}/plugins/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script type="text/javascript" src="${ctx}/plugins/bootstrap3-editable/js/bootstrap-table-editable.js"></script>
+<script type="text/javascript" 
+src="${ctx}/plugins/bootstrap3-editable/js/bootstrap-table-editable.js"></script>
 
 <script type="text/javascript">
     $(function(){	
     	 $('#exampleTableEvents').bootstrapTable({
-    	      url: "${ctx}/js/demo/bootstrap_table_test2.json",
-    	      idField: "Id",
+    	      url: "${ctx}/alarmRecord/alarmList.do",
+    	      idField: "alarmSheetId",
     	      search: true,
     	      pagination: true,
     	      showRefresh: true,
     	      showToggle: true,
     	      showColumns: true,
+    	      singleSelect:true,
     	      iconSize: 'outline',
     	      sstriped:true,
     	      toolbar: '#exampleTableEventsToolbar',
@@ -37,7 +44,7 @@
     	     columns: [ 
     	     {checkbox: true
     	     },			{
-    	                field: "id",
+    	                field: "alarmSheetId",
     	                title: "编号",
     		                
     	            }, {
@@ -52,14 +59,14 @@
 //    	              }
     	            },
     	            {
-    	                field: "carOwnName",
+    	                field: "name",
     	                title: "车主姓名"
     	            }, {
-    	                field: "alarmid",
-    	                title: "报警人编号"                
+    	                field: "telphone",
+    	                title: "车主电话"                
     	            }
     				, {
-    	                field: "telphone",
+    	                field: "userName",
     	                title: "报警人用户名"                
     	            }
     				, {
@@ -72,11 +79,31 @@
     	                editable:{
     	                	type:'select',
     	                	title:'处理状态',
-    	                	source:[{value:"1",text:"研发部"},{value:"2",text:"销售部"},{value:"3",text:"行政部"}]
+    	                	source:[{value:"1",text:"处理完成"},{value:"2",text:"正在处理"},{value:"3",text:"人工处理"}]
     	                }
     	              
     	           }
     				],//开启编辑模式
+    				   onEditableSave: function (field, row, oldValue, $el) {
+    		                $.ajax({
+    		                    type: "post",
+    		                    url: "${ctx}/alarmRecord/changeState.do",
+    		                    data: row,
+    		                    dataType: 'JSON',
+    		                    success: function (data, status) {
+    		                        if (status == "success") {
+    		                            alert('提交数据成功');
+    		                        }
+    		                    },
+    		                    error: function () {
+    		                        alert('编辑失败');
+    		                    },
+    		                    complete: function () {
+
+    		                    }
+
+    		                });
+    		                },
     	       
     	      clickToSelect:true,
     	      onClickRow:function(row, $element){
@@ -93,89 +120,76 @@
     	   
     })
  </script>
-<script type="text/javascript">
+ <script type="text/javascript">
+ 
     	function display() {
-	addDetailInfo('http://localhost:8080/moveSystem/test/test1.do', '123', '1000px', '1000px');
-	//      BootstrapDialog.show({
-	//      	type: BootstrapDialog.TYPE_PRIMARY,
-	//      size: BootstrapDialog.SIZE_WIDE,
-	//      nl2br: true,
-	//          title: '详情',
-	//          message: this.parent.load(''),
-	//          closable:true         
-	//      });
-}</script>
-<script>
-function addDetailInfo(url, title, formId, cssClasses) {
-	var $that = $(this);
-	var formUrl = url;
-	if(url.indexOf("?") != -1) {
-		formUrl = url.substring(0, url.indexOf("?")) + "/form";
-	} else {
-		formUrl = url + "/form";
-	}
-	//失效  
-	$that.attr("disabled", "disabled");
-	// 调用add方法  
-	var dialog = BootstrapDialog.show({
-		type: BootstrapDialog.TYPE_DEFAULT,
-		title:  title,
-		closable: false,
-		draggable: true,
-		cssClass: cssClasses,
-		message: $('<div></div>').load(url), //加载弹出页面  
-		size: BootstrapDialog.SIZE_WIDE, //弹出框大小。  
-		onhide: function() {
-			$that.removeAttr("disabled");
-		},
-		buttons: [{
-			id: 'btn-form-submit',
-			label: '提交',
-			icon: 'fa fa-check-circle',
-			cssClass: 'btn-primary',
-			action: function(dialogRef) {
-				var $button = this;
-				//表单验证并提交  
-				$('#' + formId).unbind("valid.form");
-				$('#' + formId).bind('valid.form', function(e, form) {
-					// Before submitting the form, hold form, to prevent duplicate submission.  
-					//$(form).holdSubmit();  
-					$button.disable();
-					$.ajax({
-						type: 'post',
-						url: formUrl,
-						data: $("#" + formId).serialize(), //序列化表格内容为字符串    
-						cache: false,
-						dataType: 'json',
-						success: function(data) {
-							// After the form is submitted successfully, release hold.  
-							//$(form).holdSubmit(false);  
-							$button.enable();
-							BootstrapDialog.alertSuccess("提交成功!", function() {
-								//当前页面刷新  
-								window.location.reload();
-							});
-							dialog.close();
-						},
-						error: function(error) {
-							$button.enable();
-							BootstrapDialog.alertError("提交失败!");
-						}
-					});
-				});
-				//提交表单  
-				$('#' + formId).trigger("submit");
-			}
-		}, {
-			label: '关闭',
-			icon: 'fa fa-close',
-			action: function(dialogItself) {
-				dialogItself.close();
-			}
-		}]
-	});
-};
-</script>
+    		var rows = $('#exampleTableEvents').bootstrapTable('getSelections');
+    		 if(rows==null||rows==""){
+    			 $.showErr('请选择一条数据');
+    			 return false;
+    		 }
+    		
+        BootstrapDialog.show({
+            message: function(dialog) {
+                var $message = $('<div></div>');
+                var pageToLoad = dialog.getData('pageToLoad');
+                $message.load(pageToLoad);
+                return $message;
+            },
+            title:'查看详细信息',
+            size: BootstrapDialog.SIZE_WIDE,
+            data: {
+                'pageToLoad': '${ctx}/alarmRecord/alarmDisplay.do?alarmSheetId='+rows[0].alarmSheetId
+            },  buttons : [ {// 设置关闭按钮
+                label : '关闭',
+                action : function(dialogItself) {
+                    dialogItself.close();
+                }
+            }],
+        });
+}
+    	var rows; 
+    	function deleteAlarm(){
+    		 rows = $('#exampleTableEvents').bootstrapTable('getSelections');
+   		 if(rows==null||rows==""){
+   			 $.showErr('请选择一条数据');
+   			 return false;
+   		 }
+   		
+   		$.showConfirm('确定删除吗?',function(){
+   			var row = rows[0];
+   	   	   $.ajax({
+   	           type: "post",
+   	           url: "${ctx}/alarmRecord/deleteAlarm.do",
+   	           data: row,
+   	           dataType: 'JSON',
+   	           success: function (data, status) {
+   	               if (status == "success") {
+   	            	$('#exampleTableEvents').bootstrapTable(  
+      	   	                 "refresh",  
+      	   	                 {  
+      	   	                     url:"${ctx}/alarmRecord/alarmList.do"  
+      	   	                 }  
+      	   	         );
+   	                   $.showSuccessTimeout('删除成功',1000);
+   	            
+   	               }
+   	           },
+   	           error: function () {
+   	        	   $.showErr('删除失败,请联系管理员');
+   	           },
+   	           complete: function () {
+   	        
+   	           }
+
+   	       });
+   	   	},null);
+    	}
+   		 
+   	
+    	
+    	
+    	</script>
 <body class="gray-bg">
 	<div class="col-sm-12">
 		<!-- Example Events -->
@@ -187,17 +201,16 @@ function addDetailInfo(url, title, formId, cssClasses) {
 						onclick="display()">
 						<i class="glyphicon glyphicon-search" aria-hidden="true"></i> <small>查看</small>
 					</button>
-					<button type="button" class="btn btn-outline btn-default">
+					<button type="button" class="btn btn-outline btn-default"
+					onclick="deleteAlarm()">
 						<i class="glyphicon glyphicon-trash" aria-hidden="true"></i> <small>删除</small>
 					</button>
 				</div>
 				<table id="exampleTableEvents"
 					data-mobile-responsive="true">
-					
 				</table>
 			</div>
 		</div>
 	</div>
 </body>
-
 </html>

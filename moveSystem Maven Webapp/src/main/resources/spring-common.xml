@@ -93,11 +93,12 @@
         </property>  
           <property name="resolveLazily" value="true"/> 
     </bean> -->
- <bean id="alarmDealService" class="com.sundata.common.util.alarmdeal.service.AlarmDealService">
- 
- 
- </bean>
- <bean id ="applicationContextUtil" class="com.sundata.common.util.ApplicationContextUtil"></bean>
+
+ <bean name="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!--<property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+         <property name="configLocation" value="classpath:quartz.properties"/> -->   
+    </bean>
+
     
     
 </beans>

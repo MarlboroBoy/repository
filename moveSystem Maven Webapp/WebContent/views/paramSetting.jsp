@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">系统信息发送失败重新发送次数</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control"> <span class="help-block m-b-none">帮助文本，可能会超过一行，以块级元素显示</span>
+                                    <input type="text" class="form-control" value="${resendTimes}"> <span class="help-block m-b-none">帮助文本，可能会超过一行，以块级元素显示</span>
                                 </div>
                             </div>
                            <div class="hr-line-dashed"></div>
