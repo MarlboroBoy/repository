@@ -22,7 +22,7 @@ public class FilterUtil implements Filter {
 	public static ThreadLocal<HttpServletResponse> responsethreadLocal = new ThreadLocal<HttpServletResponse>();
 	
 	public void destroy() {
-	}
+	}	
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {

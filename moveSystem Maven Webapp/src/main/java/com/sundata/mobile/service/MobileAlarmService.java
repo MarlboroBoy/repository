@@ -16,6 +16,7 @@ public class MobileAlarmService extends BaseService<MobileAlarmModel> {
 	
 	@Autowired
 	private AlarmDealMapper alarmDealMapper;
+	
 
 	@Autowired
 	private MobileAlarmMapper<MobileAlarmModel> mobileAlarmMapper;

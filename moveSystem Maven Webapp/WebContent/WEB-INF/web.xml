@@ -19,7 +19,7 @@
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 	
-	<!-- 用于保存request、response 
+	<!-- 用于保存request、response -->
 	<filter>
 		<filter-name>RequestFilter</filter-name>
 		<filter-class>com.sundata.common.util.FilterUtil</filter-class>
@@ -27,7 +27,7 @@
 	<filter-mapping>
 		<filter-name>RequestFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
-	</filter-mapping>-->
+	</filter-mapping>
 
 	<servlet>
 		<servlet-name>Spring-Servlet</servlet-name>
@@ -47,12 +47,17 @@
 	</servlet-mapping>
 	
 		
+	<welcome-file-list>
+		<welcome-file>views/index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	
+<listener>
+<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+ </listener>	
 	<!-- PageOffice End
 
 
-	<welcome-file-list>
-		<welcome-file>/login.do</welcome-file>
-	</welcome-file-list>
 	
 	<error-page>
 		<error-code>404</error-code>

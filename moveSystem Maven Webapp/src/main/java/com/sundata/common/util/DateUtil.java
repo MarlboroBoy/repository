@@ -3,6 +3,7 @@ package com.sundata.common.util;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -33,10 +34,16 @@ public class DateUtil
 	 * @return 
 	 */
 	
-	public String getNowTime(){
+	public static String getNowTime(){
 		Date day=new Date();    
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		return df.format(day);
+	}
+	public static Date getNowLaterTime(int time){
+		Calendar nowTime = Calendar.getInstance();
+		  //nowTime.add(Calendar.MINUTE, time);
+		nowTime.add(Calendar.SECOND, time);
+		  return nowTime.getTime();
 	}
 	
 	/**

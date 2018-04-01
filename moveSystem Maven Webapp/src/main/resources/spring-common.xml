@@ -12,9 +12,9 @@
 	<!-- 此文件禁止修改！ -->
 	 <!-- 加载配置属性文件 --> 
     <context:property-placeholder location="classpath*:jdbc.properties" ignore-unresolvable="false"/>
-	<!-- 动态引用spring对象工具
+	<!-- 动态引用spring对象工具-->
 	<bean class="com.sundata.common.util.ServiceAssistant" />
-	 -->
+	 
 	<!-- ***************配置数据源**************  数据连接获取的资源定义 两种方式：  -->
 	<!-- 1、jndi的方式获取datasource -->
 	<!--
@@ -95,10 +95,19 @@
     </bean> -->
 
  <bean name="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <!--<property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
-         <property name="configLocation" value="classpath:quartz.properties"/> -->   
+    <!--    <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+         <property name="configLocation" value="classpath:quartz.properties"/>   
+    --> 
     </bean>
-
     
+    <!-- 
+   <bean id="jobFactory" class="com.sundata.alarmdeal.manger.JobFactory"></bean>  
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="jobFactory" ref="jobFactory"></property>  
+    </bean>   -->
+    
+    <bean name="applicationContext" class="com.sundata.common.util.ApplicationContextUtil" lazy-init="false"/>  
+
+   
     
 </beans>

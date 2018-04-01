@@ -1,7 +1,9 @@
 package com.sundata.mobile.action;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import com.sundata.alarmdeal.Deal;
 import com.sundata.alarmdeal.service.CarService;
 import com.sundata.common.base.BaseAction;
 import com.sundata.common.util.DateUtil;
+import com.sundata.common.util.SessionUtil;
 import com.sundata.mobile.model.MobileAlarmModel;
 import com.sundata.mobile.service.MobileAlarmService;
 @Controller
@@ -28,22 +31,20 @@ public class MobileAlarmAction  extends BaseAction{
 	private CarService carService;//查询车辆信息
 	
 	@RequestMapping("alarm")
-	public void alarm(MobileAlarmModel mobileAlarmModel,HttpServletResponse response){
+	public void alarm(MobileAlarmModel mobileAlarmModel,HttpServletResponse response,HttpServletRequest request){
 		mobileAlarmModel.setAlarmTime(DateUtil.getCurTime());
-		if(carService.carIsHave(mobileAlarmModel.getLicensePlate())){
+		HttpSession session = request.getSession();
 		mobileAlarmModel.setProcessingState("1");
 		mobileAlarmService.alarm(mobileAlarmModel);
-		//alarmDeal.alarmDeal(mobileAlarmModel);
-		}
-		else
-		{
-			mobileAlarmModel.setProcessingState("2");//车辆库无此车,人工处理中
-			mobileAlarmService.alarm(mobileAlarmModel);
-		}
+		SessionUtil.setAttr("licensePlate", mobileAlarmModel.getLicensePlate());
+		session.setAttribute("licensePlate", mobileAlarmModel.getLicensePlate());
+		deal.findCarAndState(mobileAlarmModel);
+		
+	
 			
 		//发送移车信息的逻辑
 		sendSuccessMessage(response);	
-	}
+	} 
 	
 	@RequestMapping("/queryOnAlarm")
 	public void queryOnAlarm(HttpServletResponse response,MobileAlarmModel mobileAlarmModel){
@@ -75,7 +76,7 @@ public class MobileAlarmAction  extends BaseAction{
 	@RequestMapping("/alarmTest")
 	public void alarmTest(HttpServletResponse response){
 
-		deal.startSchedule();
+		//deal.startSchedule();
 	}
 	
 }
