@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../dist/css/muui.min.css">
   
     <link rel="stylesheet" href="../css/common.css" />
-	<link rel="stylesheet" type="text/css" href="../css/detial.css" />
+	<link rel="stylesheet" type="text/css" href="../css/index.css" />
 	<link rel="stylesheet" href="../lib/css/layer.css" type="text/css">
 	<script src="../lib/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/js/jquery.base64.js"></script>
@@ -25,40 +25,55 @@
     </style>
 </head>
 <body>
-<div class="wrap">
-			<section class="container index">
+			
 				<!--0807 v1.2 star-->
+				
 				<header class="header" style="background: #f46054;">
 					<a href="index.html" id="f_btn"><i class="icon"></i></a>
 					<span>智能移车</span>
 				</header>
 
-       
-
-       
-    
+        <ul class="footer">
+            <li class="footer-item">
+                <a href="index.html" class="">
+                    <i class="icon icon_index"></i>
+                    <p class="icon_title">首页</p>
+                </a>
+            </li>
+            <li class="footer-item">
+                <a href="onAlarm.html" class="">
+                    <i class="icon icon_invest "></i>
+                    <p class="icon_title ">正在处理</p>
+                </a>
+            </li>
+            <li class="footer-item">
+                <a href="setting.html" class="">
+                    <i class="icon icon_my"></i>
+                    <p class="icon_title">我的</p>
+                </a>
+            </li>
+        </ul>
 <div class="scroll-list">
     <ul class="muui-list scroll-ul" id="list">
 
     
     </ul>
 </div>
-</section>
-</div>
+ 
+       
 <script type="text/javascript">
 function show(url){
 	
-	location.href="detias.html?"+url; 
+	location.href="detials.html?"+url; 
 	
 }
 </script>
 
-
 <script>
 	var tmpHtml='<li muui-ac="click-active" class="muui-item muui-border">';
 	var b= '<div class="muui-cell image-cell align-middle align-center">'
-var c='<img src="images/img_default.png">'
-+'<div class="small">摇太阳</div>'
+var c='<img src="../image/timg(2).jpg">'
++'<div class="small"></div>'
 +'</div>';
 
    var fina= '</div>'
@@ -70,10 +85,10 @@ $(function(){
 	var data={"userid":AuserId}
 	$.ajax({
 		type:"get",
-		data:data,
 		url:getAPIURL()+"/alarm/alarmHistory.do",
 		async:true,
 		cache:false,
+		data:data,
 		dataType:"json",
 		success:function(data){
 			
@@ -82,9 +97,11 @@ $(function(){
 					var  a = '<a href="javaScript:void(0)" class="muui-table" onclick=show('+data[i].alarmSheetID+')>';
 					var addData='<div class="muui-cell addData" id="addData'+i+'">'  ;
 					$("#list").append(tmpHtml+a+b+c+addData);
-					var div1='<div class="main-info line-clamp-1">'+data[i].alarmTime+'</div>'
-					+'<div class=" small">'+data[i].alarmSheetID+'</div>'
-					+' <div class="small">'+data[i].alarmAdress+'<span class="muui-color">[详细]</span></div>'					
+					var div1='<div class="main-info line-clamp-1">报警车牌号:'+data[i].licensePlate+'</div>'
+					+'<div class="main-info line-clamp-1">报警状态:'+data[i].processingState+'</div>'
+					+'<div class="main-info line-clamp-1">报警时间:'+data[i].alarmTime+'</div>'
+					+'<div class=" small">报警单编号:'+data[i].alarmSheetID+'</div>'
+					+' <div class="small">违停地址:'+data[i].alarmAdress+'<span class="muui-color">[详细]</span></div>'					
 					$("#addData"+[i]+"").append(div1+fina);
 				}
 			}

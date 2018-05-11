@@ -172,6 +172,7 @@ function getTOKEN() {
 
 function getAPIURL() {
 	 return "http://localhost:8090/moveSystem";
+	 //return "http://nkvtpt.natappfree.cc";
 //return "http://sunyu.nat300.top/moveSystem";
 
 }

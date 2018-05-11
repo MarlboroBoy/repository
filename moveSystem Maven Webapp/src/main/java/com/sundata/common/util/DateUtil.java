@@ -41,8 +41,8 @@ public class DateUtil
 	}
 	public static Date getNowLaterTime(int time){
 		Calendar nowTime = Calendar.getInstance();
-		  //nowTime.add(Calendar.MINUTE, time);
-		nowTime.add(Calendar.SECOND, time);
+		  nowTime.add(Calendar.MINUTE, time);
+		//nowTime.add(Calendar.SECOND, time);
 		  return nowTime.getTime();
 	}
 	

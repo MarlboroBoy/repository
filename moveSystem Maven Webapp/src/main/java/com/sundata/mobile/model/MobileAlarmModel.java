@@ -10,7 +10,14 @@ public class MobileAlarmModel {
 	private String ProcessingState;
 	private String describ;
 	private String name;
+	private String sendSuccess;
 	
+	public String getSendSuccess() {
+		return sendSuccess;
+	}
+	public void setSendSuccess(String sendSuccess) {
+		this.sendSuccess = sendSuccess;
+	}
 	public String getName() {
 		return name;
 	}

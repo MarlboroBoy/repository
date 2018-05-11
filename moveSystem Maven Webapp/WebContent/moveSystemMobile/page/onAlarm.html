@@ -47,13 +47,13 @@
                 </a>
             </li>
             <li class="footer-item">
-                <a href="onAlarm.html" class="active">
-                    <i class="icon icon_invest"></i>
-                    <p class="icon_title">正在处理</p>
+                <a href="onAlarm.html" class="">
+                    <i class="icon icon_invest active"></i>
+                    <p class="icon_title ">正在处理</p>
                 </a>
             </li>
             <li class="footer-item">
-                <a href="personal.html" class="">
+                <a href="setting.html" class="">
                     <i class="icon icon_my"></i>
                     <p class="icon_title">我的</p>
                 </a>
@@ -74,12 +74,11 @@ function show(url){
 }
 </script>
 
-
 <script>
 	var tmpHtml='<li muui-ac="click-active" class="muui-item muui-border">';
 	var b= '<div class="muui-cell image-cell align-middle align-center">'
-var c='<img src="images/img_default.png">'
-+'<div class="small">摇太阳</div>'
+var c='<img src="../image/timg(2).jpg">'
++'<div class="small"></div>'
 +'</div>';
 
    var fina= '</div>'
@@ -103,9 +102,11 @@ $(function(){
 					var  a = '<a href="javaScript:void(0)" class="muui-table" onclick=show('+data[i].alarmSheetID+')>';
 					var addData='<div class="muui-cell addData" id="addData'+i+'">'  ;
 					$("#list").append(tmpHtml+a+b+c+addData);
-					var div1='<div class="main-info line-clamp-1">'+data[i].alarmTime+'</div>'
-					+'<div class=" small">'+data[i].alarmSheetID+'</div>'
-					+' <div class="small">'+data[i].alarmAdress+'<span class="muui-color">[详细]</span></div>'					
+					var div1='<div class="main-info line-clamp-1">报警车牌号:'+data[i].licensePlate+'</div>'
+					+'<div class="main-info line-clamp-1">报警状态:'+data[i].processingState+'</div>'
+					+'<div class="main-info line-clamp-1">报警时间:'+data[i].alarmTime+'</div>'
+					+'<div class=" small">报警单编号:'+data[i].alarmSheetID+'</div>'
+					+' <div class="small">违停地址:'+data[i].alarmAdress+'<span class="muui-color">[详细]</span></div>'					
 					$("#addData"+[i]+"").append(div1+fina);
 				}
 			}

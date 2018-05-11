@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/js/demo/bootstrap_table_test2.json=UTF-8
+encoding//WebContent/moveSystemMobile/css/detial.css=UTF-8
+encoding//WebContent/moveSystemMobile/css/index.css=UTF-8
 encoding//WebContent/views/alarm/alarmList.jsp=UTF-8
 encoding//WebContent/views/index.jsp=UTF-8
 encoding//src/main/java/com/sundata/common/util/sendsms.java=UTF-8

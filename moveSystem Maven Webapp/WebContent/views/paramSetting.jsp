@@ -74,7 +74,7 @@
                                 <label class="col-sm-2 control-label">禁用</label>
 
                                 <div class="col-sm-8">
-                                    <input type="text" disabled="" placeholder="已被禁用" class="form-control">
+                                    <input type="text"  placeholder="已被禁用" class="form-control">
                                 </div>
                             </div>
                             

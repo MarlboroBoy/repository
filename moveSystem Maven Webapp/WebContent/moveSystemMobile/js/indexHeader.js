@@ -6,6 +6,23 @@ function alarm(){
 	 var  AlicensePlate = $('#licensePlate').val();
 	 var  Adescrib = $('#describ').val();
 	 var AimgUrl = $('#describ').val();
+	 var localAdress = $('#localAdress').val();
+	 if(AlicensePlate==null||AlicensePlate==''){
+		 layer.open({
+				content:'车牌号不允许为空',
+				btn:'确定',
+				yes: function(index){
+				  
+				      layer.close(index);
+				    }
+						})
+						return false;
+	 }
+	 
+	 
+	 
+	 if(localAdress!='无定位信息')
+		 AalarmAdress =localAdress+ AalarmAdress;
 	var alarmData =  JSON.stringify({
 		licensePlate:AlicensePlate,
 		 alarmAdress:AalarmAdress,

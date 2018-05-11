@@ -12,7 +12,7 @@
 		tb_cars b on a.licenseplate = b.licensePlate
 		left JOIN tb_carowner c on b.carOwnerid = c.ID
 		left join tb_alarmusers d on a.userid=d.account
-		 where a.processingstate='1' 
+		 where a.processingstate='1' or a.processingstate='3' or a.processingstate='2' 
 	 	ORDER BY alarmTime DESC
 	</select>
 	<select id="alarmList" resultType="com.sundata.admin.model.AlarmRecordModel">
@@ -54,7 +54,7 @@
 		tb_cars b on a.licenseplate = b.licensePlate
 		left JOIN tb_carowner c on b.carOwnerid = c.ID
 		left join tb_alarmusers d on a.userid=d.account
-		 where a.processingstate='3' 
+		 where a.processingstate='4' 
 	 	ORDER BY alarmTime DESC
 	</select>
 

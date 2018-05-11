@@ -36,7 +36,7 @@ public class MobileAlarmService extends BaseService<MobileAlarmModel> {
 	}
 	public List<MobileAlarmModel> alarmHistory(MobileAlarmModel mobileAlarmModel){
 		
-		return mobileAlarmMapper.queryOnAlarm(mobileAlarmModel);
+		return mobileAlarmMapper.alarmHistory(mobileAlarmModel);
 	}
 	
 	public MobileAlarmModel queryOneAlarm(MobileAlarmModel mobileAlarmModel){

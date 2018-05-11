@@ -28,60 +28,70 @@
 	</head>
 	
 	<script type="text/javascript">
-	function close(){
-		
-		location.href('index.html');
-	}
+$(function (){
+
+
+$("#modifypassword_btn").click(function(){
+	window.location.href='index.html';  
+}); 
+});
+
 	
 	</script>
 
 	<body style="position: relative;overflow: hidden;background: #f2f2f0;">
 		<div class="wrap">
-			<section class="container index">
 				<!--0807 v1.2 star-->
 				<header class="header" style="background: #f46054;">
 					<a href="javascript:history.go(-1)" id="f_btn"><i class="icon"></i></a>
 					<span>智能移车</span>
 				</header>
-				<!--0807 v1.2 end-->
-				<section style="height: 100%;overflow: auto;">
-					<div id="slide" class="slide index-slide">
-						<!-- 轮播图片数量可自行增减 -->
-						<div class="img"><img src="../img/step1.png" /></div>
-						<div class="img"><img src="../img/banner2.png" /></div>
-						<div class="img"><img src="../img/banner3.png" /></div>
-					</div>
+				
+				
 					
 					
 				
 					<!--报警部分-->
-					<section class="newer_list" style="padding-bottom: 0.5rem;background: #fff" id="newer_list">
+					
 						<form class="form_modify">
-							<div class="input_group">
-								<span class="input_des">车牌号</span>
-								<input type="text" name="licensePlate" id="licensePlate" placeholder="违停车辆车牌号码" />
-							</div>
-							<div class="input_group">
-								<span class="input_des">违停地址</span>
-								<input type="text" name="alarmAdress" id="alarmAdress" placeholder="" />
-							</div>
-							<div class="input_group">
-								<span class="input_des">报警人</span>
-								<input type="text" name="name" id="name" placeholder="" />
-							</div>
-							<div class="input_group">
-								<span class="input_des">处理状态</span>
-								<input type="text" name="ProcessingState" id="ProcessingState" placeholder="" />
-							</div>
-						</form>
-						<button class="modifypassword_btn" id="modifypassword_btn" onclick="close();">关闭当前</button>
-					</section>
+						<div class="input_group">
+							<span class="input_des">车牌号:</span> <input type="text"
+								name="licensePlate" id="licensePlate" placeholder="违停车辆车牌号码" />
+						</div>
+						<div class="input_group">
+							<span class="input_des">报警时间:</span> <input type="text"
+								name="licensePlate" id="alarmTime" placeholder="" />
+						</div>
+						<div class="input_group">
+							<span class="input_des">报警单编号:</span> <input type="text"
+								name="licensePlate" id="alarmSheetID" placeholder="" />
+						</div>
+						<div class="input_group">
+							<span class="input_des">违停地址:</span> <input type="text"
+								name="alarmAdress" id="alarmAdress" placeholder="" />
+						</div>
+						<div class="input_group">
+							<span class="input_des">报警人:</span> <input type="text" name="name"
+								id="name" placeholder="" />
+						</div>
+						<div class="input_group">
+							<span class="input_des">描述:</span> <input type="text" name="name"
+								id="describ" placeholder="无描述" />
+						</div>
+						<div class="input_group">
+							<span class="input_des">处理状态:</span> <input type="text"
+								name="ProcessingState" id="ProcessingState" placeholder="" />
+						</div>
+					</form>
+			
+				<button class="modifypassword_btn" id="modifypassword_btn">关闭当前</button>
+	
 					<!--	页面底部部分-->
 					<ul class="footer">
 						<li class="footer-item">
 							<a href="index.html" class="">
-								<i class="icon icon_index active"></i>
-								<p class="icon_title" style="color: #f23029">首页</p>
+								<i class="icon icon_index"></i>
+								<p class="icon_title">首页</p>
 							</a>
 						</li>
 						<li class="footer-item">
@@ -98,15 +108,8 @@
 							</a>
 						</li>
 					</ul>
-				</section>
-		</div>
-		<!--占屏广告
-		<div class="modal advertisementModal" id="advertisementModal" style="display:none;">
-			<div class="advertisement">
-				<a href="javascript:;" class="closeAdvertisementModal" onclick="$('#advertisementModal').hide();"></a>
-				<a href="javascript:;" id="advertisementUrl"><img src="" style="display: block;width: 100%;" onerror="$('#advertisementModal').hide();"></a>
-			</div>
-		</div>-->
+				
+	</div>
 	</body>
 	<!--小能 start-->
 	<script src="../js/indexHeader.js"></script>
@@ -132,6 +135,9 @@
 				if(data){
 					jsondata=$.parseJSON(data);
 					$("#licensePlate").val(jsondata.licensePlate); 
+					$("#alarmTime").val(jsondata.alarmTime); 
+					$("#alarmSheetID").val(jsondata.alarmSheetID); 
+					$("#describ").val(jsondata.describ); 
 					$("#alarmAdress").val(jsondata.alarmAdress); 
 					$("#ProcessingState").val(jsondata.processingState); 
 					$("#name").val(jsondata.name); 

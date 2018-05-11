@@ -79,7 +79,7 @@ src="${ctx}/plugins/bootstrap3-editable/js/bootstrap-table-editable.js"></script
     	                editable:{
     	                	type:'select',
     	                	title:'处理状态',
-    	                	source:[{value:"1",text:"处理完成"},{value:"2",text:"正在处理"},{value:"3",text:"人工处理"}]
+    	                	source:[{value:"1",text:"报警单生成中"},{value:"2",text:"通知车主中"},{value:"3",text:"移车中"},{value:"4",text:"人工处理中"},{value:"5",text:"处理完成"}]
     	                }
     	              
     	           }

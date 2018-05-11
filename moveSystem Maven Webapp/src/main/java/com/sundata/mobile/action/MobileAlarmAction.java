@@ -1,6 +1,9 @@
 package com.sundata.mobile.action;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,8 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.sundata.alarmdeal.AlarmDeal;
 import com.sundata.alarmdeal.Deal;
 import com.sundata.alarmdeal.service.CarService;
 import com.sundata.common.base.BaseAction;
@@ -33,15 +36,10 @@ public class MobileAlarmAction  extends BaseAction{
 	@RequestMapping("alarm")
 	public void alarm(MobileAlarmModel mobileAlarmModel,HttpServletResponse response,HttpServletRequest request){
 		mobileAlarmModel.setAlarmTime(DateUtil.getCurTime());
-		HttpSession session = request.getSession();
 		mobileAlarmModel.setProcessingState("1");
 		mobileAlarmService.alarm(mobileAlarmModel);
 		SessionUtil.setAttr("licensePlate", mobileAlarmModel.getLicensePlate());
-		session.setAttribute("licensePlate", mobileAlarmModel.getLicensePlate());
 		deal.findCarAndState(mobileAlarmModel);
-		
-	
-			
 		//发送移车信息的逻辑
 		sendSuccessMessage(response);	
 	} 
@@ -74,8 +72,9 @@ public class MobileAlarmAction  extends BaseAction{
 		
 	}
 	@RequestMapping("/alarmTest")
-	public void alarmTest(HttpServletResponse response){
-
+	public ModelAndView alarmTest(HttpServletResponse response){
+Map<String,Object> context = new HashMap<String,Object>();
+		return forword("index", context);
 		//deal.startSchedule();
 	}
 	

@@ -11,7 +11,24 @@
 	</insert>
 	
 	<select id="queryOnAlarm" resultType="com.sundata.mobile.model.MobileAlarmModel">
-	select * from  tb_alarmSheet where userid =#{userid} and ProcessingState = "1"
+	SELECT
+	alarmSheetID,
+	userid,
+	licensePlate,
+	alarmAdress,
+	alarmTime,
+	imgUrl,
+	describ ,CASE 
+	WHEN ProcessingState = '3' THEN '正在移车中' 
+	when ProcessingState = '4' THEN '人工处置中'
+	when ProcessingState = '2' THEN '通知车主中'
+	end as ProcessingState
+	FROM
+	tb_alarmsheet  where userid =#{userid} and
+	 ProcessingState = '2' 
+	 or ProcessingState = '3' 
+	 or ProcessingState = '4'
+
 	</select>
 
 	<select id="queryOneAlarm" resultType="com.sundata.mobile.model.MobileAlarmModel">
@@ -20,10 +37,10 @@
 	</select>
 	
 	<select id="alarmHistory" resultType="com.sundata.mobile.model.MobileAlarmModel">
-	select * tb_alarmSheet  alarmFinish where userid =#{userid}
+	select * from tb_alarmSheet  where userid =#{userid}
 	</select>
 	<update id="alarmFinish">
-	update tb_alarmSheet set ProcessingState = '2' where alarmSheetId = #{alarmSheetID}
+	update tb_alarmSheet set ProcessingState = '5' where alarmSheetId = #{alarmSheetID}
 	</update>
 
 </mapper>
