@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sundata.alarmdeal.mapper.AlarmDealMapper">
+
+	<select id="queryAlarmState" resultType="java.lang.String" >
+		select ProcessingState from tb_alarmSheet where alarmSheetID = '1'
+	</select>
+	<update id="setState2">
+	update tb_alarmSheet set ProcessingState  = '2' where  alarmSheetId = #{_parameter}
+	</update>
+	<update id="setState3">
+	update tb_alarmSheet set ProcessingState  = '3',sendSuccess = '1'  where  alarmSheetId = #{_parameter}
+	</update>
+	<update id="setState4">
+	update tb_alarmSheet set ProcessingState  = '4' where  alarmSheetId = #{_parameter} 
+	</update>
+	<update id="setState5">
+	update tb_alarmSheet set ProcessingState  = '5' where  alarmSheetId = #{_parameter} 
+	</update>
+	<select id="findAlarmState" resultType="java.lang.String">
+	select ProcessingState from tb_alarmSheet where alarmSheetId = #{alarmSheetID}
+	</select>
+	<select id="queryCarTel" resultType="java.lang.String">
+	select b.telphone from  tb_cars a left join tb_carowner b on  a.carownerid = b.id where a.licensePlate = #{licensePlate}
+	</select>
+	<select id="queryUserTel" resultType="java.lang.String">
+	select tel from  tb_alarmusers  where account = #{userid}
+	</select>
+	
+	<select id="sendSuccess" resultType="java.lang.String">
+	select sendSuccess from tb_alarmSheet where alarmSheetId = #{alarmSheetID}
+	</select>
+
+</mapper>
